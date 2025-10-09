@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Student To-Do List{% endblock %}</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #0f172a, #1e293b, #0f172a);
+      color: #e2e8f0;
+      font-family: "Inter", sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+  <nav class="glass mx-4 mt-4 p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-cyan-400">🎓 Student To-Do</h1>
+    <div class="space-x-4">
+      <a href="{{ url_for('index') }}" class="hover:text-cyan-400">Home</a>
+      <a href="{{ url_for('login') }}" class="hover:text-cyan-400">Login</a>
+      <a href="{{ url_for('register') }}" class="hover:text-cyan-400">Register</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow container mx-auto px-4 py-8 animate__animated animate__fadeInUp">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center p-4 text-gray-500">
+    © 2024–2025 Student To-Do List Management System
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

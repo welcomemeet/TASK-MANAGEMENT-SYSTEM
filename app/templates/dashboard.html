@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2 class="text-3xl font-bold mb-6 text-cyan-400">📋 Your Tasks</h2>
+
+<form method="POST" class="mb-6 flex gap-3">
+  {{ form.hidden_tag() }}
+  {{ form.title(class="flex-1 px-3 py-2 rounded-lg text-black", placeholder="Enter a new task...") }}
+  <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-lg transition transform hover:scale-105">
+    + Add Task
+  </button>
+</form>
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  {% for task in tasks %}
+  <div class="glass p-5 transition transform hover:-translate-y-1 hover:shadow-cyan-500/40">
+    <h3 class="text-xl font-semibold text-cyan-200">{{ task.title }}</h3>
+    <p class="text-sm text-gray-400 mt-2">{{ task.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+    <a href="{{ url_for('delete', task_id=task.id) }}" class="text-red-400 hover:text-red-600 mt-3 inline-flex items-center gap-1">
+      <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
+    </a>
+  </div>
+  {% else %}
+  <p class="text-gray-400 animate__animated animate__fadeIn">No tasks yet. Add one above!</p>
+  {% endfor %}
+</div>
+{% endblock %}
